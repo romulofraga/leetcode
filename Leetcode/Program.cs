@@ -62,4 +62,9 @@ static class Solution
         }
         return items;
     }
+
+    public static int[] SortedSquares(int[] nums)
+    {
+
+    }
 }
