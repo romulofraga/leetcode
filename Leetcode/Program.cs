@@ -2,7 +2,7 @@
 {
     static void Main(string[] args)
     {
-        Solution.FindNumbers(new int[] { 112, 123, 123, 121, 121, 121 });
+        Solution.RemoveElement([1, 1, 1], 1);
     }
 }
 
@@ -84,5 +84,50 @@ static class Solution
             index--;
         }
         return result;
+    }
+
+    public static int RemoveElement(int[] nums, int val)
+    {
+        var count = 0;
+        int left;
+        int right;
+        var length = nums.Length;
+
+        if (length == 1 && val == nums[0]) return 0;
+        if (length == 1 && val != nums[0]) return 1;
+
+        for (int i = 0; i < length; i++)
+        {
+            if (nums[i] != val)
+            {
+                continue;
+            };
+            for (int j = length - 1; j >= 0; j--)
+            {
+                if (nums[j] == val)
+                {
+                    length--;
+                    count++;
+                    continue;
+                }
+                if (nums[j] != val && i < j)
+                {
+                    left = nums[i];
+                    right = nums[j];
+                    nums[i] = right;
+                    nums[j] = left;
+                    count++;
+                    length--;
+                    break;
+                }
+                if (nums[j] == nums[i] && i == j)
+                {
+                    length--;
+                    count++;
+                    break;
+                }
+            }
+        }
+        return nums.Length - count;
     }
 }
